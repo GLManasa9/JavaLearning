@@ -8,13 +8,39 @@ public class VarClass {
     public static class Person {
         String fname;
         String lname;
+
+        public String getFname() {
+            return fname;
+        }
+
+        public String getLname() {
+            return lname;
+        }
+
         public Person(String fname, String lname){
             this.fname = fname;
             this.lname = lname;
         }
+
+        public String appendFnameLname() {
+            return fname+"-"+lname;
+        }
+    }
+
+    public static class Car {
+        String kms;
+        public Car(String kms){
+            this.kms = kms;
+        }
+
+        public String getKms() {
+            return kms;
+        }
+
     }
 
         public static void main(String[] args) {
+           /* Understand usage of vars feature */
             var Roland = new Person("Ronald", "Deschain");
             var Susan = new Person("Susan", "Delgado");
             var Eddie = new Person("Eddie", "Dean");
@@ -28,11 +54,34 @@ public class VarClass {
 
             filteredPersons.stream().map(x->x.lname).forEach(System.out::println);
 
+            System.out.println("=====================================");
+
             //this returns list of first names based on filter applied
             var filteredFirstNames =
                     List.of(Roland, Susan, Eddie, Detta, Jake).stream().map(x->x.fname).filter(name->name.startsWith("J"))
                             .collect(Collectors.toList());
 
-            filteredFirstNames.stream().forEach(System.out::println);
+            filteredFirstNames.forEach(System.out::println);
+
+            System.out.println("=====================================");
+
+            /* Understand usage of method reference */
+            Car tiago = new Car("5000");
+            Car honda = new Car("15000");
+
+            var Cars = List.of(tiago,honda).stream().map(Car::getKms).collect(Collectors.toList());
+            Cars.forEach(System.out::println);
+
+            System.out.println("=====================================");
+
+            // this returns first names based on map using method reference
+            filteredFirstNames = List.of(Roland, Susan, Eddie, Detta, Jake).stream().map(Person::getFname).collect(Collectors.toList());
+            filteredFirstNames.forEach(System.out::println);
+
+            System.out.println("=====================================");
+
+            // this returns first names based on map using method reference
+            var appendNames = List.of(Roland, Susan, Eddie, Detta, Jake).stream().map(Person::appendFnameLname).collect(Collectors.toList());
+            appendNames.forEach(System.out::println);
         }
 }
