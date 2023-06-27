@@ -4,84 +4,82 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class VarClass {
+    public static void main(String[] args) {
+        /* Understand usage of vars feature */
+        var Roland = new Person("Ronald", "Deschain");
+        var Susan = new Person("Susan", "Delgado");
+        var Eddie = new Person("Eddie", "Dean");
+        var Detta = new Person("Detta", "Walker");
+        var Jake = new Person("Jake", "Chambers");
 
-    public static class Person {
-        String fname;
-        String lname;
+        //this returns list of person based on filter applied, will have data of both fname and lname
+        var filteredPersons =
+                List.of(Roland, Susan, Eddie, Detta, Jake).stream().filter(x -> x.fname.contains("Jake"))
+                        .collect(Collectors.toList());
 
-        public String getFname() {
-            return fname;
-        }
+        filteredPersons.stream().map(x->x.lname).forEach(System.out::println);
 
-        public String getLname() {
-            return lname;
-        }
+        System.out.println("=====================================");
 
-        public Person(String fname, String lname){
-            this.fname = fname;
-            this.lname = lname;
-        }
+        //this returns list of first names based on filter applied
+        var filteredFirstNames =
+                List.of(Roland, Susan, Eddie, Detta, Jake).stream().map(x->x.fname).filter(name->name.startsWith("J"))
+                        .collect(Collectors.toList());
 
-        public String appendFnameLname() {
-            return fname+"-"+lname;
-        }
+        filteredFirstNames.forEach(System.out::println);
+
+        System.out.println("=====================================");
+
+        /* Understand usage of method reference */
+        Car tiago = new Car("5000");
+        Car honda = new Car("15000");
+
+        var Cars = List.of(tiago,honda).stream().map(Car::getKms).collect(Collectors.toList());
+        Cars.forEach(System.out::println);
+
+        System.out.println("=====================================");
+
+        // this returns first names based on map using method reference
+        filteredFirstNames = List.of(Roland, Susan, Eddie, Detta, Jake).stream().map(Person::getFname).collect(Collectors.toList());
+        filteredFirstNames.forEach(System.out::println);
+
+        System.out.println("=====================================");
+
+        // this returns first names based on map using method reference
+        var appendNames = List.of(Roland, Susan, Eddie, Detta, Jake).stream().map(Person::appendFnameLname).collect(Collectors.toList());
+        appendNames.forEach(System.out::println);
+    }
+}
+
+class Person {
+    String fname;
+    String lname;
+
+    public String getFname() {
+        return fname;
     }
 
-    public static class Car {
-        String kms;
-        public Car(String kms){
-            this.kms = kms;
-        }
-
-        public String getKms() {
-            return kms;
-        }
-
+    public String getLname() {
+        return lname;
     }
 
-        public static void main(String[] args) {
-           /* Understand usage of vars feature */
-            var Roland = new Person("Ronald", "Deschain");
-            var Susan = new Person("Susan", "Delgado");
-            var Eddie = new Person("Eddie", "Dean");
-            var Detta = new Person("Detta", "Walker");
-            var Jake = new Person("Jake", "Chambers");
+    public Person(String fname, String lname){
+        this.fname = fname;
+        this.lname = lname;
+    }
 
-            //this returns list of person based on filter applied, will have data of both fname and lname
-            var filteredPersons =
-                    List.of(Roland, Susan, Eddie, Detta, Jake).stream().filter(x -> x.fname.contains("Jake"))
-                            .collect(Collectors.toList());
+    public String appendFnameLname() {
+        return fname+"-"+lname;
+    }
+}
 
-            filteredPersons.stream().map(x->x.lname).forEach(System.out::println);
+class Car {
+    String kms;
+    public Car(String kms){
+        this.kms = kms;
+    }
+    public String getKms() {
+        return kms;
+    }
 
-            System.out.println("=====================================");
-
-            //this returns list of first names based on filter applied
-            var filteredFirstNames =
-                    List.of(Roland, Susan, Eddie, Detta, Jake).stream().map(x->x.fname).filter(name->name.startsWith("J"))
-                            .collect(Collectors.toList());
-
-            filteredFirstNames.forEach(System.out::println);
-
-            System.out.println("=====================================");
-
-            /* Understand usage of method reference */
-            Car tiago = new Car("5000");
-            Car honda = new Car("15000");
-
-            var Cars = List.of(tiago,honda).stream().map(Car::getKms).collect(Collectors.toList());
-            Cars.forEach(System.out::println);
-
-            System.out.println("=====================================");
-
-            // this returns first names based on map using method reference
-            filteredFirstNames = List.of(Roland, Susan, Eddie, Detta, Jake).stream().map(Person::getFname).collect(Collectors.toList());
-            filteredFirstNames.forEach(System.out::println);
-
-            System.out.println("=====================================");
-
-            // this returns first names based on map using method reference
-            var appendNames = List.of(Roland, Susan, Eddie, Detta, Jake).stream().map(Person::appendFnameLname).collect(Collectors.toList());
-            appendNames.forEach(System.out::println);
-        }
 }
