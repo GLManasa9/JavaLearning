@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.List;
 
-public class Exception {
+public class ExceptionExample {
 
     public static class Person {
         String fName;
