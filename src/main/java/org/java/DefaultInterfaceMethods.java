@@ -1,15 +1,10 @@
-package org.example;
-
+package org.java;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
-import java.lang.System;
-
 import static java.lang.System.out;
-
 interface Logging {
-
     void log();
     /**
      * log the message
@@ -18,7 +13,7 @@ interface Logging {
     void log(String message);
 
     default void log(String message, Date date) {
-        out.println(date.toString() + ": " + message);
+        out.println(date.toString() + " : " + message);
     }
 }
 
@@ -64,8 +59,9 @@ public class DefaultInterfaceMethods implements Logging {
         DefaultInterfaceMethods defaultInterfaceMethods = new DefaultInterfaceMethods();
         defaultInterfaceMethods.log("Hai");
         out.println(defaultInterfaceMethods);
-        Logging logObj = new DefaultInterfaceMethods(null);
+        Logging logObj = new DefaultInterfaceMethods("hello");
         logObj.log();
+        defaultInterfaceMethods.log("Hello World!",new Date());
     }
 }
 

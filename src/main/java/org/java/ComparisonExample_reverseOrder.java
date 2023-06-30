@@ -1,4 +1,4 @@
-package org.example;
+package org.java;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -29,9 +29,9 @@ public class ComparisonExample_reverseOrder {
 
         int i = Comparator.comparing(NPerson::getAge).compare(Detta,Jake);
         switch(i) {
-            case 1->out.println("Detta is older than Jake");
-            case 0->out.println("Detta and Jake are of same age");
-            case -1->out.println("Detta is younger than Jake");
+            case 1:out.println("Detta is older than Jake");
+            case 0:out.println("Detta and Jake are of same age");
+            case -1:out.println("Detta is younger than Jake");
         }
     }
 }
