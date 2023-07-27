@@ -14,10 +14,10 @@ public class VarClass {
 
         //this returns list of person based on filter applied, will have data of both fname and lname
         var filteredPersons =
-                List.of(Roland, Susan, Eddie, Detta, Jake).stream().filter(x -> x.fname.contains("Jake"))
+                List.of(Roland, Susan, Eddie, Detta, Jake).stream().filter(x->x.getFname().contains("Jake"))
                         .collect(Collectors.toList());
 
-        filteredPersons.stream().map(x->x.lname).forEach(System.out::println);
+        filteredPersons.stream().map(Person::getLname).forEach(System.out::println);
 
         System.out.println("=====================================");
 

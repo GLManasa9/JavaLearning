@@ -4,13 +4,13 @@ import java.util.Scanner;
 
 import static java.lang.System.out;
 
-class InvalidAgeException extends Exception {
+class InvalidAgeException extends RuntimeException {
     public InvalidAgeException(String message) {
         super(message);
     }
 }
 
-class NegativeAgeException extends Exception {
+class NegativeAgeException extends RuntimeException {
     public NegativeAgeException(String message) {
         super(message);
     }
@@ -25,15 +25,15 @@ public class CustomException {
             validateAge(age);
         }
         catch(InvalidAgeException ex){
-            out.println("Caught the exception, inside catch block of "+ex.getMessage());
+            out.println("Caught the exception, inside catch block:: "+ex.getMessage());
         } catch (NegativeAgeException e) {
-            out.println("Caught the exception, inside catch block of "+e.getMessage());
+            out.println("Caught the exception, inside catch block::"+e.getMessage());
         }
         //ex.getLocalizedMessage() or ex.getMessage() - Caught the exception, inside catch block of age is not valid to vote
         //ex - Caught the exception, inside catch block of org.example.InvalidAgeException: age is not valid to vote
     }
 
-    static void validateAge(float age) throws InvalidAgeException,NegativeAgeException {
+    static void validateAge(float age) throws InvalidAgeException, NegativeAgeException {
         if(age>0 && age<18)
             throw new InvalidAgeException("age is not valid to vote");
         else if(age<0)

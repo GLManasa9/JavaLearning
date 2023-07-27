@@ -1,5 +1,6 @@
 package singletonDesignPattern;
 
+import Pages.GooglePage;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -26,8 +27,8 @@ public class SingletonDesignTest {
         driver2=SingletonBaseClass.getDriver();
         System.out.println("driver2:"+driver2);
         driver2.navigate().to("https://www.google.com");
-        GooglePage googlePage = new GooglePage(driver2);
-        googlePage.enterTextInSearchBox();
+        GooglePage googlePage = new GooglePage();
+        googlePage.enterTextInSearchBox("automation");
     }
 
     @AfterClass
