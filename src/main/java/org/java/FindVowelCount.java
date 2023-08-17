@@ -1,5 +1,7 @@
 package org.java;
 
+import java.util.HashMap;
+
 import static java.lang.System.out;
 
 public class FindVowelCount {
